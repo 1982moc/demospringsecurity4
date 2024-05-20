@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REGISTER</title>
+    <style>
+        .text-center {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="text-center">
+    <form th:method="POST" th:action="@{/admin/register}" th:object="${user}">
+        <div class="form-group">
+            <label for="username">Enter Username</label>
+            <input type="text" th:field="*{username}" id="username"/><br>
+        </div>
+        <div class="form-group">
+            <label for="firstname">Enter FirstName</label>
+            <input type="text" th:field="*{firstname}" id="firstname"/><br>
+        </div>
+        <div class="form-group">
+            <label for="secondName">Enter SecondName</label>
+            <input type="text" th:field="*{secondName}" id="secondName"/><br>
+        </div>
+        <div class="form-group">
+            <label for="age">Enter Age</label>
+            <input type="text" th:field="*{age}" id="age"/><br>
+        </div>
+        <div class="form-group">
+            <label for="email">Enter Email</label>
+            <input type="text" th:field="*{email}" id="email"/><br>
+        </div>
+        <div class="form-group">
+            <label for="password">Enter Password</label>
+            <input type="text" th:field="*{password}" id="password"/><br>
+        </div>
+        <div class="form-group">
+            <label>Select role:</label><br>
+            <input type="checkbox" th:field="*{roles}" th:value="ROLE_ADMIN"/> Admin<br>
+            <input type="checkbox" th:field="*{roles}" th:value="ROLE_USER"/> User<br>
+        </div>
+        <input type="submit" value="REGISTER"/>
+    </form>
+</div>
+</body>
+</html>

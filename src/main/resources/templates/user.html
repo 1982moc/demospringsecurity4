@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .text-center {
+            text-align: center;
+        }
+    </style>
+    <title>Admin Page</title>
+</head>
+<body>
+<div class="text-center">
+    <a href="/">Main Page</a>
+    <form th:action="@{/logout}" th:method="POST" style="display: inline;">
+        <input type="submit" value="Logout"/>
+    </form>
+    <sec:authorize access="hasRole('ADMIN')">
+        <a class="nav-link" href="/admin">Admin Panel</a>
+    </sec:authorize>
+</div>
+
+<table border="1" align="center" cellspacing="0" cellpadding="3">
+    <tr>
+        <th>UserName</th>
+        <th>First Name</th>
+        <th>Second Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getUsername()}">UserName</td>
+        <td th:text="${user.getFirstname()}">First Name</td>
+        <td th:text="${user.getSecondName()}">Second Name</td>
+        <td th:text="${user.getAge()}">Age</td>
+        <td th:text="${user.getEmail()}">Email</td>
+        <td th:text="${user.getRoles()}">Roles</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>SOAMO welcome SOAMO</title>
+    <style>
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="text-center">
+    <strong><span style="font-size: 36px;"><u>Welcome to SOAMO</u></span></strong>
+    <nav style="font-size: 18px;">
+        <ul style="list-style-type: none; padding: 0;">
+            <li sec:authorize="isAnonymous()">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                Welcome, <span sec:authentication="name"></span>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/user">Your Profile</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" th:method="POST" style="display: inline;">
+                    <input type="submit" value="Logout"/>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
