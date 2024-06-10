@@ -1,6 +1,6 @@
 package com.example.demospringsecurity.service;
 
-//import ru.kata.spring.boot_security.demo.models.User;
+
 
 import com.example.demospringsecurity.models.User;
 

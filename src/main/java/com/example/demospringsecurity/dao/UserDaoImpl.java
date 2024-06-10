@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 
-//import ru.kata.spring.boot_security.demo.models.User;
 
 import java.util.List;
 

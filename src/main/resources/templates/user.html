@@ -1,42 +1,34 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <style type="text/css">
+    <title>User Profile</title>
+    <style>
         .text-center {
             text-align: center;
         }
+        .form-group {
+            margin-bottom: 15px;
+        }
     </style>
-    <title>Admin Page</title>
 </head>
 <body>
 <div class="text-center">
-    <a href="/">Main Page</a>
-    <form th:action="@{/logout}" th:method="POST" style="display: inline;">
-        <input type="submit" value="Logout"/>
-    </form>
-    <sec:authorize access="hasRole('ADMIN')">
-        <a class="nav-link" href="/admin">Admin Panel</a>
-    </sec:authorize>
+    <h1>User Profile</h1>
+    <div>
+        <p>Username: <span th:text="${user.username}">Username</span></p>
+        <p>First Name: <span th:text="${user.firstname}">First Name</span></p>
+        <p>Second Name: <span th:text="${user.secondName}">Second Name</span></p>
+        <p>Age: <span th:text="${user.age}">Age</span></p>
+        <p>Email: <span th:text="${user.email}">Email</span></p>
+        <p>Roles: <span th:text="${user.roles}">Roles</span></p>
+    </div>
+    <div>
+        <form th:action="@{/logout}" th:method="POST" style="display: inline;">
+            <input type="submit" value="Logout"/>
+        </form>
+        <input type="button" value="Main Menu" onclick="window.location.href = '/'"/>
+    </div>
 </div>
-
-<table border="1" align="center" cellspacing="0" cellpadding="3">
-    <tr>
-        <th>UserName</th>
-        <th>First Name</th>
-        <th>Second Name</th>
-        <th>Age</th>
-        <th>Email</th>
-        <th>Role</th>
-    </tr>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.getUsername()}">UserName</td>
-        <td th:text="${user.getFirstname()}">First Name</td>
-        <td th:text="${user.getSecondName()}">Second Name</td>
-        <td th:text="${user.getAge()}">Age</td>
-        <td th:text="${user.getEmail()}">Email</td>
-        <td th:text="${user.getRoles()}">Roles</td>
-    </tr>
-</table>
 </body>
 </html>

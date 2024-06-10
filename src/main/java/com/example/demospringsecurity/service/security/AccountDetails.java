@@ -3,7 +3,7 @@ package com.example.demospringsecurity.service.security;
 import com.example.demospringsecurity.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-//import ru.kata.spring.boot_security.demo.models.User;
+
 
 import java.util.Collection;
 
