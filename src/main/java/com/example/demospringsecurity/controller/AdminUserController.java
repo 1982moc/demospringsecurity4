@@ -1,7 +1,7 @@
 package com.example.demospringsecurity.controller;
 
 import com.example.demospringsecurity.models.User;
-import com.example.demospringsecurity.service.UserService;
+import com.example.demospringsecurity.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
-    private final UserService userService;
+public class AdminUserController {
+    private final AdminUserService adminUserService;
 
     @Autowired
-    public AdminController(UserService userService) {
-        this.userService = userService;
+    public AdminUserController(AdminUserService adminUserService) {
+        this.adminUserService = adminUserService;
     }
 
     @GetMapping
     public String showUsers(Model model) {
-        model.addAttribute("users", userService.listUsers());
+        model.addAttribute("users", adminUserService.listUsers());
         return "admin";
     }
 
@@ -38,31 +38,28 @@ public class AdminController {
 
     @PostMapping("/register")
     public String inputUser(@ModelAttribute("user") User user) {
-        userService.addUser(user);
+        adminUserService.addUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/{id}/edit")
     public String editUser(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("editable_user", userService.getUser(id));
+        model.addAttribute("editable_user", adminUserService.getUser(id));
         return "edit";
     }
 
     @PatchMapping("/{id}")
     public String edit(@ModelAttribute("editable_user") User user, @PathVariable("id") Long id) {
-        userService.editUser(id, user);
+        adminUserService.editUser(id, user);
         return "redirect:/admin";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") Long id) {
-        userService.deleteUser(id);
+        adminUserService.deleteUser(id);
         return "redirect:/admin";
     }
 
-    @RequestMapping("/forbidden")
-    public String accessDenied() {
-        return "forbidden";
-    }
+
 }
 //привет

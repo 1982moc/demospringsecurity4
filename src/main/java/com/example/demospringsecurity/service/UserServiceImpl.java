@@ -16,49 +16,28 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
 
-    private final PasswordEncoder passwordEncoder;
-
     @Autowired
-    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
-        this.passwordEncoder = passwordEncoder;
     }
 
-    @Transactional
-    @Override
-    public void addUser(User user) {
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.addUser(user);
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public List<User> listUsers() {
-        return userDao.listUsers();
-    }
-
+    //@Transactional(readOnly = true)
+    //@Override
+    //public List<User> listUsers() {
+    //    return userDao.listUsers();
+   // }
 
     @Transactional(readOnly = true)
     @Override
     public User getUser(Long id) {
-
         return userDao.getUser(id);
     }
-
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
-    public void editUser(Long id, User user) {
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.editUser(id, user);
+    public List<User> findByUsername(String username) {
+        return userDao.findByUsername(username);
     }
 
-    @Transactional
-    @Override
-    public void deleteUser(Long id) {
 
-        userDao.deleteUser(id);
-    }
 }
 
